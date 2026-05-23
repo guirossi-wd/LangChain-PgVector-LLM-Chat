@@ -10,7 +10,7 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 load_dotenv()
 
 #validação se ambiente está configurado
-for k in ("GOOGLE_API_KEY", "DATABASE_URL", "PGVECTOR_COLLECTION"):
+for k in ("GOOGLE_API_KEY", "DATABASE_URL", "PG_VECTOR_COLLECTION_NAME"):
     if not os.getenv(k):
         raise RuntimeError(f"Variável de Ambiente {k} não está disponível.")
 
@@ -47,7 +47,7 @@ def ingest_pdf():
     #inserir os bancos no DB usando o PGVector da LangChain (automágico)
     store = PGVector(
         embeddings=embeddings,
-        collection_name=os.getenv("PGVECTOR_COLLECTION"),
+        collection_name=os.getenv("PG_VECTOR_COLLECTION_NAME"),
         connection=os.getenv("DATABASE_URL"),
         use_jsonb=True
     )

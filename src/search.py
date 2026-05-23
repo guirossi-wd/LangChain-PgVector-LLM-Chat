@@ -42,7 +42,7 @@ def pesquisa_banco_dados(query: str) -> str:
     Função para fazer a pesquisa no banco de dados da pergunta do usuário.
   """
 
-  for k in ("GOOGLE_API_KEY", "DATABASE_URL", "PGVECTOR_COLLECTION"):
+  for k in ("GOOGLE_API_KEY", "DATABASE_URL", "PG_VECTOR_COLLECTION_NAME"):
     if not os.getenv(k):
         raise RuntimeError(f"Variável de Ambiente {k} não está configurada.")
 
@@ -51,7 +51,7 @@ def pesquisa_banco_dados(query: str) -> str:
 
   store = PGVector(
       embeddings=embeddings,
-      collection_name=os.getenv("PGVECTOR_COLLECTION"),
+      collection_name=os.getenv("PG_VECTOR_COLLECTION_NAME"),
       connection=os.getenv("DATABASE_URL"),
       use_jsonb=True
   )

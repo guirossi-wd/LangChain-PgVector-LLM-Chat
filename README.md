@@ -36,3 +36,10 @@ docker-compose up -d
 3 - python src/ingest.py
 
 4 - python src/chat.py
+
+
+Obs sobre .env
+ - Foi utilizado GEMINI
+ - o PDF está na raiz do projeto com o nome document.pdf
+ - O arquivo docker-compose está configurando a porta 5433 para não correr o risco de dar conflito com postgres instalado na maquina local que tem a porta padrão 5432
+ 
